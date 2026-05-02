@@ -2,178 +2,890 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sujan Karki | Equity Research</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujan Karki — Equity Research Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-  color: #111;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-h1 {
-  font-size: 32px;
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.section {
-  background: white;
-  padding: 25px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.metric {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.buy {
-  color: green;
-  font-weight: bold;
-}
-
-.chart {
-  height: 300px;
-  margin-top: 15px;
-}
-
-ul {
-  padding-left: 18px;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
+  :root {
+    --ink: #0e0e0d;
+    --ink-muted: #5a5a56;
+    --ink-faint: #9e9e98;
+    --paper: #f5f3ee;
+    --paper-off: #ece9e2;
+    --rule: #d6d2c9;
+    --accent: #1a3a2a;
+    --accent-light: #2d6048;
+    --gold: #b8923a;
+    --gold-light: #e8c97a;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
   }
-}
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER BANNER ── */
+  .banner {
+    background: var(--accent);
+    padding: 72px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(184,146,58,0.2);
+    border-radius: 50%;
+  }
+
+  .banner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 60px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(184,146,58,0.12);
+    border-radius: 50%;
+  }
+
+  .banner-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    position: relative;
+    z-index: 1;
+  }
+
+  .banner-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .banner-name {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 500;
+    color: #f5f3ee;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .banner-nickname {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: rgba(245,243,238,0.45);
+    margin-bottom: 20px;
+  }
+
+  .banner-tagline {
+    font-size: 14px;
+    color: rgba(245,243,238,0.7);
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .banner-meta {
+    text-align: right;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    border-radius: 2px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+  }
+
+  .badge-block { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(245,243,238,0.55);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--gold-light); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy-text {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink);
+    font-weight: 400;
+    max-width: 680px;
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+  }
+
+  .philosophy-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin-top: 36px;
+    border: 1px solid var(--rule);
+  }
+
+  .pillar {
+    background: var(--paper);
+    padding: 20px 22px;
+  }
+
+  .pillar-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .pillar-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ── RESEARCH TABLE ── */
+  .research-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .research-table thead tr {
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .research-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0 12px 10px 0;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .research-table tbody tr {
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.15s;
+  }
+
+  .research-table tbody tr:hover {
+    background: var(--paper-off);
+  }
+
+  .research-table td {
+    padding: 14px 12px 14px 0;
+    vertical-align: middle;
+    color: var(--ink);
+  }
+
+  .ticker {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--accent-light);
+    letter-spacing: 0.05em;
+  }
+
+  .company-name {
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .company-sector {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .rating-pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .buy { border-color: #2d6048; color: #2d6048; background: rgba(45,96,72,0.06); }
+  .hold { border-color: #b8923a; color: #b8923a; background: rgba(184,146,58,0.06); }
+  .sell { border-color: #8b3a3a; color: #8b3a3a; background: rgba(139,58,58,0.06); }
+
+  .upside {
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+
+  .upside.pos { color: #2d6048; }
+  .upside.neg { color: #8b3a3a; }
+
+  .thesis-text {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    max-width: 240px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .skill-cell {
+    background: var(--paper);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .skill-icon {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .skill-desc {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  /* ── CREDENTIALS ── */
+  .cred-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cred-row:last-child { border-bottom: none; }
+
+  .cred-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  .cred-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .cred-body {}
+
+  .cred-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .cred-sub {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--accent);
+    padding: 36px 48px;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(245,243,238,0.4);
+    letter-spacing: 0.08em;
+  }
+
+  footer a {
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in:nth-child(1) { animation-delay: 0.05s; }
+  .fade-in:nth-child(2) { animation-delay: 0.15s; }
+  .fade-in:nth-child(3) { animation-delay: 0.25s; }
+  .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+  @media (max-width: 680px) {
+    .banner { padding: 48px 24px 40px; }
+    .banner-grid { grid-template-columns: 1fr; }
+    .banner-meta { text-align: left; }
+    .contact-links { justify-content: flex-start; }
+    .container { padding: 0 24px; }
+    .philosophy-pillars { grid-template-columns: 1fr; }
+    .research-table th:nth-child(5),
+    .research-table td:nth-child(5) { display: none; }
+  }
+
+  /* ── LIVE MARKET DASHBOARD ── */
+  .market-strip {
+    background: #0b2218;
+    border-top: 1px solid rgba(184,146,58,0.35);
+    border-bottom: 1px solid rgba(184,146,58,0.35);
+  }
+
+  .market-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+  }
+
+  .market-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .market-card {
+    background: var(--paper-off);
+    border: 1px solid var(--rule);
+    padding: 16px;
+    min-height: 360px;
+  }
+
+  .market-card.large { min-height: 520px; }
+
+  .market-card-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .chart-frame { height: 460px; width: 100%; }
+  .ta-frame { height: 360px; width: 100%; }
+
+  .mini-market-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .technical-notes {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .technical-note {
+    background: var(--paper);
+    padding: 18px 20px;
+  }
+
+  .technical-note h4 {
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .technical-note p {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 860px) {
+    .market-grid,
+    .mini-market-grid,
+    .technical-notes { grid-template-columns: 1fr; }
+    .chart-frame { height: 420px; }
+  }
+
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- HEADER -->
+<header class="banner">
+  <div class="banner-grid">
+    <div>
+      <p class="banner-eyebrow fade-in">Equity Research Portfolio</p>
+      <h1 class="banner-name fade-in">Sujan Karki</h1>
+      <p class="banner-nickname fade-in">— Miles</p>
+      <p class="banner-tagline fade-in">Bottom-up fundamental analysis across Energy & Technology. Focused on free cash flow inflections, identifiable catalysts, and mispriced risk.</p>
+    </div>
+    <div class="banner-meta fade-in">
+      <div class="badge-block">
+        <span class="badge">MS Finance · 4.0 GPA</span>
+        <span class="badge">CFA Level III Candidate</span>
+        <span class="badge">Houston, TX</span>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:miles.karki@gmail.com" class="contact-link">miles.karki@gmail.com</a>
+        <a href="https://www.linkedin.com/in/sujan-karki-a85954170" class="contact-link" target="_blank">LinkedIn</a>
+        <a href="https://peaceful-page-e07.notion.site/Sujan-Karki-Miles-271c219fcd5980c293fee86caca739c7" class="contact-link" target="_blank">Full Coverage →</a>
+      </div>
+    </div>
+  </div>
+</header>
 
-<h1>Sujan Karki (Miles)</h1>
-<p class="subtitle">Equity Research Portfolio | Focused Valuation Work (OXY & Uber)</p>
-
-<div class="section">
-<p>
-This portfolio presents focused, in-depth valuation work on a select number of companies.
-The analysis emphasizes DCF modeling, scenario analysis, and identifying mispriced opportunities.
-</p>
+<!-- LIVE MARKET TICKER -->
+<div class="market-strip">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "NYSE:OXY", "title": "OXY" },
+        { "proName": "NYSE:UBER", "title": "UBER" },
+        { "proName": "NASDAQ:NVDA", "title": "NVDA" },
+        { "proName": "NYSE:SLB", "title": "SLB" },
+        { "proName": "NASDAQ:KC", "title": "KC" },
+        { "proName": "AMEX:XLE", "title": "Energy ETF" },
+        { "proName": "TVC:USOIL", "title": "WTI Crude" },
+        { "proName": "TVC:SPX", "title": "S&P 500" }
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
 </div>
 
-<!-- OXY -->
-<div class="section">
-<h2>Occidental Petroleum (OXY)</h2>
 
-<div class="grid">
-<div>
-<p class="metric"><strong>Rating:</strong> <span class="buy">BUY</span></p>
-<p class="metric"><strong>Price Target:</strong> $68</p>
-<p class="metric"><strong>Upside:</strong> ~16%</p>
+<main>
+  <!-- PHILOSOPHY -->
+  <div class="container">
+    <section class="section">
+      <div class="section-label">Investment Philosophy</div>
+      <p class="philosophy-text">
+        I seek companies at inflection points — where improving free cash flow, a clear catalyst, and market mispricing converge. My process is bottom-up and scenario-driven, always stress-testing the downside before sizing the upside.
+      </p>
+      <div class="philosophy-pillars">
+        <div class="pillar">
+          <p class="pillar-num">01</p>
+          <p class="pillar-title">FCF Quality</p>
+          <p class="pillar-desc">Earnings mean nothing without cash. I prioritize companies with durable, improving free cash flow profiles.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-num">02</p>
+          <p class="pillar-title">Catalyst Identification</p>
+          <p class="pillar-desc">Mispricing alone isn't enough. I look for near-term events that can close the gap — earnings revisions, contract wins, regulatory shifts.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-num">03</p>
+          <p class="pillar-title">Downside First</p>
+          <p class="pillar-desc">Bear-case scenario valuation anchors every model. Asymmetric risk/reward is the target — not just absolute upside.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 
-<h3>Investment Thesis</h3>
-<p>
-OXY is mispriced due to perceived leverage risk. However, strong free cash flow generation 
-and accelerated deleveraging create a clear path to valuation re-rating.
-</p>
+  <!-- RESEARCH COVERAGE -->
+  <div class="container">
+    <section class="section">
+      <div class="section-label">Research Coverage</div>
+      <h2 class="section-title" style="margin-bottom: 28px;">Active Coverage Universe</h2>
+      <table class="research-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Company</th>
+            <th>Rating</th>
+            <th>Price Target</th>
+            <th>Upside</th>
+            <th>Thesis Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ticker">OXY</span></td>
+            <td>
+              <div class="company-name">Occidental Petroleum</div>
+              <div class="company-sector">Energy · E&P</div>
+            </td>
+            <td><span class="rating-pill buy">Buy</span></td>
+            <td style="font-family: var(--mono); font-size:13px;">$68.00</td>
+            <td><span class="upside pos">+16%</span></td>
+            <td><p class="thesis-text">Market underestimates deleveraging trajectory. $4.5B debt repaid 7 months ahead of schedule. Buffett owns 28%.</p></td>
+          </tr>
+          <tr>
+            <td><span class="ticker">SLB</span></td>
+            <td>
+              <div class="company-name">SLB (Schlumberger)</div>
+              <div class="company-sector">Energy · Oilfield Services</div>
+            </td>
+            <td><span class="rating-pill buy">Buy</span></td>
+            <td style="font-family: var(--mono); font-size:13px;">$68.00</td>
+            <td><span class="upside pos">+21%</span></td>
+            <td><p class="thesis-text">Digital ARR $1B growing 15% YoY. ChampionX synergies underpriced. Q1 weakness is temporary, not structural.</p></td>
+          </tr>
+          <tr>
+            <td><span class="ticker">UBER</span></td>
+            <td>
+              <div class="company-name">Uber Technologies</div>
+              <div class="company-sector">Technology · Mobility & Delivery</div>
+            </td>
+            <td><span class="rating-pill buy">Buy</span></td>
+            <td style="font-family: var(--mono); font-size:13px;">$85.00</td>
+            <td><span class="upside pos">+22%</span></td>
+            <td><p class="thesis-text">Profitability inflection not fully priced in. FCF $9.8B in FY2025. AV partnership with Waymo de-risks disruption.</p></td>
+          </tr>
+          <tr>
+            <td><span class="ticker">NVDA</span></td>
+            <td>
+              <div class="company-name">NVIDIA Corp</div>
+              <div class="company-sector">Technology · Semiconductors / AI</div>
+            </td>
+            <td><span class="rating-pill hold">Hold</span></td>
+            <td style="font-family: var(--mono); font-size:13px;">$215.00</td>
+            <td><span class="upside pos">+7%</span></td>
+            <td><p class="thesis-text">Greatest AI infrastructure business ever built — but priced for perfection at 36x EV/EBITDA. Prefer entry at $165–175.</p></td>
+          </tr>
+          <tr>
+            <td><span class="ticker">KC</span></td>
+            <td>
+              <div class="company-name">Kingsoft Cloud</div>
+              <div class="company-sector">Technology · Cloud / AI · China</div>
+            </td>
+            <td><span class="rating-pill buy">Buy</span></td>
+            <td style="font-family: var(--mono); font-size:13px;">$19.00</td>
+            <td><span class="upside pos">+27%</span></td>
+            <td><p class="thesis-text">AI gross billing +95% YoY. EBITDA margin expanded to 24.4%. Priced as commodity cloud, not AI infrastructure.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 11px; color: var(--ink-faint); font-family: var(--mono); margin-top: 14px;">
+        Sample coverage — live charts and technical dashboards added below. For full models and DCF outputs, see <a href="https://peaceful-page-e07.notion.site/Sujan-Karki-Miles-271c219fcd5980c293fee86caca739c7" style="color: var(--gold); text-decoration: none;">Research Coverage →</a>
+      </p>
+    </section>
+  </div>
 
-<h3>Key Drivers</h3>
-<ul>
-<li>Free cash flow inflection</li>
-<li>Debt reduction trajectory</li>
-<li>Oil sensitivity ($55–$80/bbl)</li>
-</ul>
-</div>
 
-<div class="chart">
-<div class="tradingview-widget-container">
-<div class="tradingview-widget-container__widget"></div>
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-{
-  "symbol": "NYSE:OXY",
-  "width": "100%",
-  "height": "100%",
-  "dateRange": "12M",
-  "colorTheme": "light",
-  "locale": "en"
-}
-</script>
-</div>
-</div>
+  <!-- LIVE MARKET DASHBOARD -->
+  <div class="container">
+    <section class="section">
+      <div class="section-label">Live Market Dashboard</div>
+      <h2 class="section-title">Live Prices, Charts & Technical Analysis</h2>
+      <p style="font-size: 13px; color: var(--ink-muted); max-width: 720px; margin-bottom: 24px;">
+        Live market widgets provide real-time or delayed market data depending on exchange availability.
+        This section shows how I monitor price action, trend, momentum, and risk levels alongside fundamental valuation.
+      </p>
 
-</div>
-</div>
+      <div class="market-grid">
+        <div class="market-card large">
+          <div class="market-card-title">OXY Interactive Chart</div>
+          <div class="chart-frame">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+              {
+                "autosize": true,
+                "symbol": "NYSE:OXY",
+                "interval": "D",
+                "timezone": "America/Chicago",
+                "theme": "light",
+                "style": "1",
+                "locale": "en",
+                "allow_symbol_change": true,
+                "calendar": false,
+                "support_host": "https://www.tradingview.com",
+                "studies": [
+                  "MASimple@tv-basicstudies",
+                  "RSI@tv-basicstudies",
+                  "MACD@tv-basicstudies",
+                  "Volume@tv-basicstudies"
+                ]
+              }
+              </script>
+            </div>
+          </div>
+        </div>
 
-<!-- UBER -->
-<div class="section">
-<h2>Uber Technologies (UBER)</h2>
+        <div class="market-card">
+          <div class="market-card-title">OXY Technical Signal</div>
+          <div class="ta-frame">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+              {
+                "interval": "1D",
+                "width": "100%",
+                "isTransparent": true,
+                "height": "100%",
+                "symbol": "NYSE:OXY",
+                "showIntervalTabs": true,
+                "displayMode": "single",
+                "locale": "en",
+                "colorTheme": "light"
+              }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="grid">
-<div>
-<p class="metric"><strong>Rating:</strong> <span class="buy">BUY</span></p>
-<p class="metric"><strong>Price Target:</strong> $82</p>
-<p class="metric"><strong>Upside:</strong> ~15%</p>
+      <div class="mini-market-grid">
+        <div class="market-card">
+          <div class="market-card-title">UBER Interactive Chart</div>
+          <div class="chart-frame" style="height:360px;">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+              {
+                "autosize": true,
+                "symbol": "NYSE:UBER",
+                "interval": "D",
+                "timezone": "America/Chicago",
+                "theme": "light",
+                "style": "1",
+                "locale": "en",
+                "allow_symbol_change": true,
+                "support_host": "https://www.tradingview.com",
+                "studies": [
+                  "MASimple@tv-basicstudies",
+                  "RSI@tv-basicstudies",
+                  "Volume@tv-basicstudies"
+                ]
+              }
+              </script>
+            </div>
+          </div>
+        </div>
 
-<h3>Investment Thesis</h3>
-<p>
-Uber is entering a profitability inflection driven by operating leverage, 
-pricing discipline, and platform monetization.
-</p>
+        <div class="market-card">
+          <div class="market-card-title">UBER Technical Signal</div>
+          <div class="ta-frame">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+              <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+              {
+                "interval": "1D",
+                "width": "100%",
+                "isTransparent": true,
+                "height": "100%",
+                "symbol": "NYSE:UBER",
+                "showIntervalTabs": true,
+                "displayMode": "single",
+                "locale": "en",
+                "colorTheme": "light"
+              }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<h3>Key Drivers</h3>
-<ul>
-<li>Revenue growth ($37B → $57B)</li>
-<li>EBITDA margin expansion (12% → 18%)</li>
-<li>Platform efficiency</li>
-</ul>
-</div>
+      <div class="technical-notes">
+        <div class="technical-note">
+          <h4>Trend</h4>
+          <p>I monitor whether price is above or below key moving averages to judge whether fundamentals are being confirmed by market behavior.</p>
+        </div>
+        <div class="technical-note">
+          <h4>Momentum</h4>
+          <p>RSI and MACD help identify overbought/oversold conditions and whether price momentum is improving or fading.</p>
+        </div>
+        <div class="technical-note">
+          <h4>Risk Control</h4>
+          <p>Technical levels are not my investment thesis, but they help define entry points, downside levels, and timing discipline.</p>
+        </div>
+      </div>
 
-<div class="chart">
-<div class="tradingview-widget-container">
-<div class="tradingview-widget-container__widget"></div>
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-{
-  "symbol": "NYSE:UBER",
-  "width": "100%",
-  "height": "100%",
-  "dateRange": "12M",
-  "colorTheme": "light",
-  "locale": "en"
-}
-</script>
-</div>
-</div>
+      <p class="market-note">
+        Data and widgets powered by TradingView. Exchange data may be delayed depending on market and TradingView availability. Educational portfolio demonstration only.
+      </p>
+    </section>
+  </div>
 
-</div>
-</div>
 
-<div style="font-size:12px; color:#666;">
-All analysis for educational portfolio purposes only.
-</div>
+  <!-- SKILLS -->
+  <div class="container">
+    <section class="section">
+      <div class="section-label">Skills & Tools</div>
+      <div class="skills-grid">
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">Financial Modeling</div>
+          <div class="skill-desc">DCF, LBO, Comparable Analysis, Precedent Transactions</div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">Equity Valuation</div>
+          <div class="skill-desc">Scenario-based, sum-of-the-parts, NAV for E&P</div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">Financial Statement Analysis</div>
+          <div class="skill-desc">Quality of earnings, accruals, FCF bridge analysis</div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">Advanced Excel</div>
+          <div class="skill-desc">Dynamic models, sensitivity tables, macro automation</div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">Power BI</div>
+          <div class="skill-desc">Data visualization, earnings dashboards, sector screens</div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">◈</div>
+          <div class="skill-name">CFA Curriculum</div>
+          <div class="skill-desc">Level III candidate — portfolio management, derivatives, fixed income</div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-</div>
+  <!-- CREDENTIALS -->
+  <div class="container">
+    <section class="section">
+      <div class="section-label">Education & Credentials</div>
+      <div class="cred-row">
+        <span class="cred-year">2024–25</span>
+        <div class="cred-dot"></div>
+        <div class="cred-body">
+          <div class="cred-title">CFA Level III Candidate</div>
+          <div class="cred-sub">CFA Institute — Portfolio Management & Wealth Planning</div>
+        </div>
+      </div>
+      <div class="cred-row">
+        <span class="cred-year">2023–24</span>
+        <div class="cred-dot"></div>
+        <div class="cred-body">
+          <div class="cred-title">MS Finance — 4.0 GPA</div>
+          <div class="cred-sub">Houston, TX · Focus: Energy Finance & Equity Markets</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Sujan Karki (Miles) · Houston, TX · <a href="mailto:miles.karki@gmail.com">miles.karki@gmail.com</a> · <a href="https://www.linkedin.com/in/sujan-karki-a85954170" target="_blank">LinkedIn</a></p>
+  <p style="margin-top: 6px;">All price targets and ratings are for educational and portfolio demonstration purposes only. Not investment advice.</p>
+</footer>
 
 </body>
 </html>
